@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <meta charset="UTF-8"/>
+    <meta charset="UTF-8"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="">
 <meta name="theme-color" content="#000">
-<title>Ation&#39;s blog</title>
+<title>安装第二个物理机(以Ubuntu 19.10为例) | Ation&#39;s blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1585789241467">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/mist.css">
@@ -27,7 +27,8 @@
 
 
 
-      <meta name="description" content="">
+    <meta name="description" content="安装第二个物理机(以Ubuntu 19.10为例)" />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -79,7 +80,7 @@
             
               
             
-            <li class="nav-item nav-item-active">
+            <li class="nav-item ">
               
               
                 <a href="/archives" target="_self">
@@ -155,10 +156,25 @@
     </div>
     <div class="main-continer">
       
-      <div class="section-layout bg-color mist">
+      <div class="section-layout mist bg-color">
         <div class="section-layout-wrapper">
-          <div id="sidebarMeta" class="sidebar">
-    
+          
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper  right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body mist" id="sidebar_body">
+        
+          
+            
 <div class="sidebar-wrapper box-shadow-wrapper ">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -191,84 +207,215 @@
 
 
 </div>
+          
+        
+      </div>
+    </div>
+  
 </div>
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'mist';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
-      }
-    });
-  }
-  </script>
-          <div class="section-box box-shadow-wrapper">
-            <section class="section archives-section bg-color posts-expand">
-              
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
 
-<div class="bg-color">
-  <div class="archive-timeline-box">
-    <div class="archive-timeline-title">
-      
-        <h2>非常好！目前共计2篇日志，继续努力！</h2>
-      
-    </div>
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+          <div class="section-box box-shadow-wrapper">
+            <div class="section bg-color post post-page">
+              <header class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://ation-xu.github.io/post/an-zhuang-di-er-ge-wu-li-ji-yi-ubuntu-1910-wei-li/">
+      安装第二个物理机(以Ubuntu 19.10为例)
+    </a>
+  </h1>
+  <div class="post-meta">
     
-      
-      
-        <div class="node-title">
-          <h2 class="tag-year">2020</h2>
-        </div>    
-        
-      
-      <a href="https://ation-xu.github.io/post/an-zhuang-di-er-ge-wu-li-ji-yi-ubuntu-1910-wei-li/">
-        <div class="motion-warpper tag-archive-node">
-          <div class="tag-node">
-            <h1>
-              04-02
-              <small>安装第二个物理机(以Ubuntu 19.10为例)</small>
-            </h1>
-          </div>  
-      </div>
-      </a>
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span>发布于</span>
+      <span>2020-04-02</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
     
-      
-      
-      <a href="https://ation-xu.github.io/post/helloworldzai-github-shang-da-jian-bo-ke/">
-        <div class="motion-warpper tag-archive-node">
-          <div class="tag-node">
-            <h1>
-              04-02
-              <small>Hello,World!(在GitHub上搭建博客)</small>
-            </h1>
-          </div>  
-      </div>
-      </a>
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>3分钟</span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>739<span class="pc-show">字数</span></span>
+    </span>
     
   </div>
-  
-<div class="page bg-color">
-  <ul class="pagination-ul">
-    
-    
-      
-        <li class="pagination-li pagination-active">
-            <a href="/archives/page/../">
-              1
-            </a>
-        </li>
-      
-    
-    
+</header>
+              <div class="post-body next-md-body" id="post_body">
+                <p>之前看到有个同学直接安装了 Ubuntu 的物理机，我立刻被 Ubuntu 的高度可定制性吸引，于是也想装一个 Ubuntu 物理机玩玩.可是我还是舍不得 Windows（注：笔者使用的是 Windows 10）上的数据.尝试过安装 VMware虚拟机，问题是电脑配置不高，虚拟机运行总会占用大量内存，非常卡.于是我就想着安装双系统.捣鼓了半天，Ubuntu 完美运行.以下是操作步骤.</p>
+<h3 id="材料&配置">材料&配置</b></h3>
+<ul>
+<li>Lenovo ideapad 310S</li>
+<li>一个容量大于等于4GB的空U盘</li>
+<li>Ubuntu 19.10 的映像文件(官网下载 网址:<a href="https://ubuntu.com/download">https://ubuntu.com/download</a>).</li>
+<li>UltraISO软碟通(官网下载 网址:<a href="https://cn.ultraiso.net/">https://cn.ultraiso.net/</a>).</li>
+</ul>
+<h3 id="操作"><b>操作</b></h3>
+<b>一.在硬盘中划分出一段空间供Ubuntu使用.</b>
+<ol>
+<li>右键单击 此电脑，左键单击 管理，在 弹出窗口左边栏 找到 存储 → 磁盘管理。此时，中间栏会出现你的电脑的磁盘分区.</li>
+<li>左键单击选中要压缩的分区，右键单击，左键单击 压缩卷。这里我在 D盘 空出50GB(注：50GB=51200MB)的容量来供 Ubuntu 使用.</li>
+<li>压缩完以后会发现多出了一段空白的空间.不要做任何操作(由于截图上的电脑已经安装了 Ubuntu，所以截图上显示多出来的50GB空间为 主分区.若按照正常操作，应该显示 空闲).</li>
+</ol>
+<img src="../../post-images/1585708715054.png"/>
+<b>二.制作 Ubuntu 19.10 启动盘.</b>
+<ol>
+<li>按照上文的网址下载 Ubuntu 19.10 映像文件(.iso) 和 UltraISO软碟通.</li>
+<li>启动 UltraISO软碟通安装程序，按照步骤安装软件.</li>
+<li>安装完以后用 UltraISO软碟通 打开我们下载的映像文件.</li>
+<li>打开后左键单击 启动，左键单击选择 写入硬盘映像... .</li>
+<li>在驱动器中选择我们的空U盘.U盘内所有数据将被抹去.</li>
+<li>左键单击 写入，等待 写入完后左键单击选择 返回.关闭软件</li>
+这时我们看到的U盘已经是如图这样了.
+<img src="../../post-images/1585709573311.png"/>
+</ol>
+<b>安装 Ubuntu 19.10</b>
+<ol>
+<li>不要拔出U盘，重启电脑.</li>
+<li>在计算机的启动界面(注：是计算机启动界面，不是Windows启动界面)同时按下Fn+F12(部分电脑是只按F12)，进入启动盘选择.</li>
+<li>按上下键选择一个开头为USB的选项，按Enter键进入.</li>
+<li>之后就开始准备安装了.在左边语言栏找到 简体中文，发现右边栏有两个选项，选择直接安装.</li>
+<li>之后按照自己的需要选择选项，在 硬盘 一栏中选择第一个选项：安装 Ubuntu 与 Windows 10 共存.</li>
+<li>等待安装结束，重启电脑，在引导界面选择 Ubuntu 就可以进入 Ubuntu系统了.</li>
+原谅我没有截图，讲的应该够清晰了😝
+</ol>
+<h3 id="参考"><b>参考</b></h3>
+没有参考，除了"进入启动选择的方法"是百度的之外，完全是自己摸索的.
+              </div>
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Ation&#39;s blog
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://ation-xu.github.io/post/an-zhuang-di-er-ge-wu-li-ji-yi-ubuntu-1910-wei-li/" title="安装第二个物理机(以Ubuntu 19.10为例)">安装第二个物理机(以Ubuntu 19.10为例)</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，转载请注明出处！
+    </li>
   </ul>
+  <div class="tags">
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="Hello,World!(在GitHub上搭建博客)" href="https://ation-xu.github.io/post/helloworldzai-github-shang-da-jian-bo-ke/">Hello,World!(在GitHub上搭建博客)</a>
+        <a class="nav-mobile-next" title="Hello,World!(在GitHub上搭建博客)" href="https://ation-xu.github.io/post/helloworldzai-github-shang-da-jian-bo-ke/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
 </div>
-</div>
+              
+  
+    
+      <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
-            </section>
+<div id="gitalk-container"></div>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'de4f5ee6299d193ba545',
+    clientSecret: 'f5279bd6ed9b5307f2ac8fb9ee26decefeb66ab1',
+    repo: 'blogtalk',
+    owner: 'ation-xu',
+    admin: ['ation-xu'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+  gitalk.render('gitalk-container')
+</script>
+    
+    
+  
+
+            </div>
           </div>
         </div>
       </div>
@@ -430,6 +577,36 @@
   // 代码高亮
   hljs.initHighlightingOnLoad();
 
+</script>
+      <div class="light-box" id="light_box"></div>
+<script>
+  let imgs = document.querySelectorAll('.post-body img');
+  let lightBox = document.querySelector('#light_box');
+  lightBox.addEventListener('mousedown', (e) => {
+    e.preventDefault()
+  })
+  lightBox.addEventListener('mousewheel', (e) => {
+    e.preventDefault()
+  })
+  let width = window.innerWidth * 0.8;
+  lightBox.onclick= () => {
+    let img = lightBox.querySelector('img');
+    lightBox.style = '';
+    img && img.remove();
+  }
+  imgs.forEach(item => {
+    item.onclick = function(e) {
+      let lightImg = document.createElement('img');
+      lightImg.src = this.src;
+      lightBox.style = `height: 100%; opacity: 1; background-color: rgba(0, 0, 0, 0.5);cursor: zoom-out;`;
+      lightImg.style = `width: ${width}px; border: 1px solid #fff; border-radius: 2px;`;
+      lightImg.onclick = function() {
+        lightBox.style = '';
+        this.remove();
+      }
+      lightBox.append(lightImg);
+    }
+  })
 </script>
     </div>
   </body>
