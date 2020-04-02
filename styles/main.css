@@ -2108,6 +2108,6 @@ blockquote:before {
     }
     .mist .site-title i {
       background: #FFFFFF7f;
-    }.box-shadow-wrapper {
-      box-shadow: none !important;
-    }
+    }.bg-img img {
+        filter: blur(5px)
+      }
