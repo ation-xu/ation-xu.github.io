@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="theme-color" content="#000">
 <title>安装第二个物理机(以Ubuntu 19.10为例) | Ation&#39;s blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1585789241467">
+<link rel="shortcut icon" href="/favicon.ico?v=1585789720794">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/mist.css">
 
@@ -321,21 +321,21 @@
 </header>
               <div class="post-body next-md-body" id="post_body">
                 <p>之前看到有个同学直接安装了 Ubuntu 的物理机，我立刻被 Ubuntu 的高度可定制性吸引，于是也想装一个 Ubuntu 物理机玩玩.可是我还是舍不得 Windows（注：笔者使用的是 Windows 10）上的数据.尝试过安装 VMware虚拟机，问题是电脑配置不高，虚拟机运行总会占用大量内存，非常卡.于是我就想着安装双系统.捣鼓了半天，Ubuntu 完美运行.以下是操作步骤.</p>
-<h3 id="材料&配置">材料&配置</b></h3>
+<h3><b>材料&配置</b></h3>
 <ul>
 <li>Lenovo ideapad 310S</li>
 <li>一个容量大于等于4GB的空U盘</li>
 <li>Ubuntu 19.10 的映像文件(官网下载 网址:<a href="https://ubuntu.com/download">https://ubuntu.com/download</a>).</li>
 <li>UltraISO软碟通(官网下载 网址:<a href="https://cn.ultraiso.net/">https://cn.ultraiso.net/</a>).</li>
 </ul>
-<h3 id="操作"><b>操作</b></h3>
+<h3><b>操作</b></h3>
 <b>一.在硬盘中划分出一段空间供Ubuntu使用.</b>
 <ol>
 <li>右键单击 此电脑，左键单击 管理，在 弹出窗口左边栏 找到 存储 → 磁盘管理。此时，中间栏会出现你的电脑的磁盘分区.</li>
 <li>左键单击选中要压缩的分区，右键单击，左键单击 压缩卷。这里我在 D盘 空出50GB(注：50GB=51200MB)的容量来供 Ubuntu 使用.</li>
 <li>压缩完以后会发现多出了一段空白的空间.不要做任何操作(由于截图上的电脑已经安装了 Ubuntu，所以截图上显示多出来的50GB空间为 主分区.若按照正常操作，应该显示 空闲).</li>
 </ol>
-<img src="../../post-images/1585708715054.png"/>
+<img src="../../post-images/1585789630400.png"/>
 <b>二.制作 Ubuntu 19.10 启动盘.</b>
 <ol>
 <li>按照上文的网址下载 Ubuntu 19.10 映像文件(.iso) 和 UltraISO软碟通.</li>
@@ -345,7 +345,7 @@
 <li>在驱动器中选择我们的空U盘.U盘内所有数据将被抹去.</li>
 <li>左键单击 写入，等待 写入完后左键单击选择 返回.关闭软件</li>
 这时我们看到的U盘已经是如图这样了.
-<img src="../../post-images/1585709573311.png"/>
+<img src="../../post-images/1585789700926.png"/>
 </ol>
 <b>安装 Ubuntu 19.10</b>
 <ol>
@@ -357,7 +357,7 @@
 <li>等待安装结束，重启电脑，在引导界面选择 Ubuntu 就可以进入 Ubuntu系统了.</li>
 原谅我没有截图，讲的应该够清晰了😝
 </ol>
-<h3 id="参考"><b>参考</b></h3>
+<h3><b>参考</b></h3>
 没有参考，除了"进入启动选择的方法"是百度的之外，完全是自己摸索的.
               </div>
               <div class="post-footer">
