@@ -7,7 +7,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="">
 <meta name="theme-color" content="#000">
-<title>Hello,World!(在GitHub上搭建博客) | Ation&#39;s blog</title>
+<title>震惊!浙江中小学开学时间公布！ | Ation&#39;s blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1585791115907">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/mist.css">
@@ -27,8 +27,8 @@
 
 
 
-    <meta name="description" content="Hello,World!(在GitHub上搭建博客)" />
-    <meta name="keywords" content="Blog" />
+    <meta name="description" content="震惊!浙江中小学开学时间公布！" />
+    <meta name="keywords" content="Joke" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -174,7 +174,8 @@
       <div class="sidebar-body mist" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper ">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -207,6 +208,192 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%91%98%E8%A6%81">摘要</a></li>
+<li><a href="#%E6%AD%A3%E6%96%87">正文</a></li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+      lList.push(elem);
+    }
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+
+(function() {
+  // 处理不是从#一级标题开始目录
+  if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+    let con = tocContent.children[0].children[0];
+    tocContent.innerHTML = con.innerHTML;
+  }
+  addTocNumber(tocContent, '');
+})();
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -294,8 +481,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://ation-xu.github.io/post/helloworldzai-github-shang-da-jian-bo-ke/">
-      Hello,World!(在GitHub上搭建博客)
+    <a class="post-title-link" href="https://ation-xu.github.io/post/zhen-liang-zhe-jiang-zhong-xiao-xue-kai-xue-shi-jian-gong-bu/">
+      震惊!浙江中小学开学时间公布！
     </a>
   </h1>
   <div class="post-meta">
@@ -312,8 +499,8 @@
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://ation-xu.github.io/tag/kueImdHZt/">
-              <span>Blog</span>
+            <a href="https://ation-xu.github.io/tag/P6KxTNpbW/">
+              <span>Joke</span>
             </a>
           
         
@@ -327,19 +514,18 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>199<span class="pc-show">字数</span></span>
+      <span>50<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <p>2020年3月31日，<br>
-我按照 <a href="https://wearbbs.cn/index.php?threads/63/#post-243"><font color="blue">https://wearbbs.cn/index.php?threads/63/#post-243</font></a> 的教程，在Github上申请了一个账号ation-xu,网址为：<a href="https://ation-xu.github.io"><font color="blue">https://ation-xu.github.io</font></a>.<br>
-搭建博客的步骤在我参考的教程内有详细说明，在此不再重复.</p>
-<p>参考 <a href="https://wearbbs.cn/index.php?threads/63/#post-243"><font color="blue">https://wearbbs.cn/index.php?threads/63/#post-243</font></a>.</p>
-<p>按照教程十分顺利，但是在最后一步——在Gridea中检测远程连接时出现问题.<br>
-网络上有很多处理方式，但亲测后发现大多无用.最后发现是Gridea软件不是最新版本.官网下载慢，我百度了一下，下载安装后解决了问题。</p>
-<p>注：第一篇博客，我按照学习计算机语言的惯例(输出Hello,World)将其命名。这篇博客很短小，只是当作纪念。</p>
+                <h2 id="摘要">摘要</h2>
+<p>什么也没有</p>
+<h2 id="正文">正文</h2>
+<p>不可能的😏😏😏</p>
+<h2 id="参考">参考</h2>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU3NDM5OTg3NA==&mid=2247492721&idx=1&sn=eb5537ff29731fd1a254745d6268b216&chksm=fd30509cca47d98a539ac6b530f09564118ae1dc61e1ab37e10067c3a137ee9ba95f9924f9e9&mpshare=1&scene=23&srcid=&sharer_sharetime=1585730189587&sharer_shareid=6cc05dbc473ea97ffcfef1d4888e6ca2#rd">https://mp.weixin.qq.com/s?__biz=MzU3NDM5OTg3NA==&amp;mid=2247492721&amp;idx=1&amp;sn=eb5537ff29731fd1a254745d6268b216&amp;chksm=fd30509cca47d98a539ac6b530f09564118ae1dc61e1ab37e10067c3a137ee9ba95f9924f9e9&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1585730189587&amp;sharer_shareid=6cc05dbc473ea97ffcfef1d4888e6ca2#rd</a></p>
 
               </div>
               <div class="post-footer">
@@ -350,7 +536,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://ation-xu.github.io/post/helloworldzai-github-shang-da-jian-bo-ke/" title="Hello,World!(在GitHub上搭建博客)">Hello,World!(在GitHub上搭建博客)</a>
+      <a href="https://ation-xu.github.io/post/zhen-liang-zhe-jiang-zhong-xiao-xue-kai-xue-shi-jian-gong-bu/" title="震惊!浙江中小学开学时间公布！">震惊!浙江中小学开学时间公布！</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -359,18 +545,18 @@
   </ul>
   <div class="tags">
     
-      <a href="https://ation-xu.github.io/tag/kueImdHZt/"># Blog</a>
+      <a href="https://ation-xu.github.io/tag/P6KxTNpbW/"># Joke</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="安装第二个物理机(以Ubuntu 19.10为例)" href="https://ation-xu.github.io/post/an-zhuang-di-er-ge-wu-li-ji-yi-ubuntu-1910-wei-li/">安装第二个物理机(以Ubuntu 19.10为例)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="安装第二个物理机(以Ubuntu 19.10为例)" href="https://ation-xu.github.io/post/an-zhuang-di-er-ge-wu-li-ji-yi-ubuntu-1910-wei-li/">上一篇</a>
-      
     </div>
     <div class="nav-next">
+      
+        <a class="nav-pc-next" title="安装第二个物理机(以Ubuntu 19.10为例)" href="https://ation-xu.github.io/post/an-zhuang-di-er-ge-wu-li-ji-yi-ubuntu-1910-wei-li/">安装第二个物理机(以Ubuntu 19.10为例)</a>
+        <a class="nav-mobile-next" title="安装第二个物理机(以Ubuntu 19.10为例)" href="https://ation-xu.github.io/post/an-zhuang-di-er-ge-wu-li-ji-yi-ubuntu-1910-wei-li/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>

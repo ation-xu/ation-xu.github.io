@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8"/>
+      <meta charset="UTF-8"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="">
 <meta name="theme-color" content="#000">
-<title>Hello,World!(在GitHub上搭建博客) | Ation&#39;s blog</title>
+<title>Ation&#39;s blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1585791115907">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/mist.css">
@@ -27,8 +27,6 @@
 
 
 
-    <meta name="description" content="Hello,World!(在GitHub上搭建博客)" />
-    <meta name="keywords" content="Blog" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -156,25 +154,10 @@
     </div>
     <div class="main-continer">
       
-      <div class="section-layout mist bg-color">
+      <div class="section-layout bg-color mist">
         <div class="section-layout-wrapper">
-          
-
-<div class="sidebar">
-  
-    <div class="sidebar-box box-shadow-wrapper  right-motion" id="sidebar">
-      
-        <div class="post-list-sidebar">
-          <div class="sidebar-title">
-            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
-            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
-          </div>
-        </div>
-      
-      <div class="sidebar-body mist" id="sidebar_body">
-        
-          
-            
+          <div id="sidebarMeta" class="sidebar">
+    
 <div class="sidebar-wrapper box-shadow-wrapper ">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -207,199 +190,70 @@
 
 
 </div>
-          
-        
-      </div>
-    </div>
-  
 </div>
 <script>
-  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
-  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
-  const SLIDE_UP_IN = 'slide-up-in';
-
-  let sidebar = document.querySelector('#sidebar'),
-  tocSideBar = document.querySelector('#tocSideBar'),
-  metaSideBar = document.querySelector('#metaSideBar'),
-  postToc = document.querySelector('#post_toc'),
-  postSiteMeta = document.querySelector('#post_side_meta'),
-  sidebarTitle = document.querySelector('.sidebar-title'),
-  sidebarBody = document.querySelector('#sidebar_body');
-
-  tocSideBar && tocSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  metaSideBar && metaSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  function toggleSidebar(e) {
-    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
-    if (currentTitle == e.srcElement) {
-      return ;
-    }
-    let current, showElement, hideElement;
-    if (e.srcElement == metaSideBar) {
-      showElement = postSiteMeta;
-      hideElement = postToc;
-    } else if (e.srcElement == tocSideBar){
-      showElement = postToc;
-      hideElement = postSiteMeta;
-    }
-    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
-    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
-
-    window.Velocity(hideElement, 'stop');
-    window.Velocity(hideElement, 'transition.slideUpOut', {
-      display: 'none',
-      duration: 200,
-      complete: function () {
-        window.Velocity(showElement, 'transition.slideDownIn', {
-          duration: 200
-        });
+  let sidebarMeta = document.querySelector('#sidebarMeta');
+  let scheme = 'mist';
+  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
+    document.addEventListener('scroll', function(e) {
+      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
+        sidebarWrapper.classList.add('home-sidebar-fixed')
+      } else {
+        sidebarWrapper.classList.remove('home-sidebar-fixed')
       }
-    })
-    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
-    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+    });
   }
-
-  postToc && postToc.addEventListener('transitionend', function() {
-    this.classList.remove(SLIDE_UP_IN);
-  });
-
-  if (sidebarBody) {
-    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
-      let hasFix = false;
-      let scrollEl = document.querySelector('.main-continer');
-      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
-      window.addEventListener('scroll', function(e) {
-        if (document.scrollingElement.scrollTop >= limitTop) {
-          if (!hasFix) {
-            sidebar.classList.add('sidebar-fixed');
-            hasFix = true;
-          }
-        } else {
-          if (hasFix) {
-            sidebar.classList.remove('sidebar-fixed');
-            hasFix = false;
-          }
-        }
-      });
-    }
-  }
-  
-</script>
-          <div class="section-box box-shadow-wrapper">
-            <div class="section bg-color post post-page">
-              <header class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://ation-xu.github.io/post/helloworldzai-github-shang-da-jian-bo-ke/">
-      Hello,World!(在GitHub上搭建博客)
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span>发布于</span>
-      <span>2020-04-02</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-      <span class="meta-item">
-        <i class="fa fa-folder-o"></i>
-        <span class="pc-show">分类于</span>
+  </script>
+            <div class="section-box tag-line">
+              <div class="box-shadow-wrapper">
+                <div class="bg-color">
+                  <section class="section posts-expand">
+                    <div class="padding-wrapper">
+  <div class="tag-timeline-box">
+    <div class="tag-timeline-wrapper">
+      <div class="tag-timeline-title">
+        <h2>
+          Joke
+          <small>标签</small>
+        </h2>
+      </div>
+      
         
           
-            <a href="https://ation-xu.github.io/tag/kueImdHZt/">
-              <span>Blog</span>
+            <a href="https://ation-xu.github.io/post/zhen-liang-zhe-jiang-zhong-xiao-xue-kai-xue-shi-jian-gong-bu/">
+              <div class="motion-warpper">
+                <div class="tag-post-node">
+                  <h1>
+                    04-02
+                    <small>震惊!浙江中小学开学时间公布！</small>
+                  </h1>
+                </div>  
+              </div>
             </a>
           
         
-      </span>
-      <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>199<span class="pc-show">字数</span></span>
-    </span>
-    
-  </div>
-</header>
-              <div class="post-body next-md-body" id="post_body">
-                <p>2020年3月31日，<br>
-我按照 <a href="https://wearbbs.cn/index.php?threads/63/#post-243"><font color="blue">https://wearbbs.cn/index.php?threads/63/#post-243</font></a> 的教程，在Github上申请了一个账号ation-xu,网址为：<a href="https://ation-xu.github.io"><font color="blue">https://ation-xu.github.io</font></a>.<br>
-搭建博客的步骤在我参考的教程内有详细说明，在此不再重复.</p>
-<p>参考 <a href="https://wearbbs.cn/index.php?threads/63/#post-243"><font color="blue">https://wearbbs.cn/index.php?threads/63/#post-243</font></a>.</p>
-<p>按照教程十分顺利，但是在最后一步——在Gridea中检测远程连接时出现问题.<br>
-网络上有很多处理方式，但亲测后发现大多无用.最后发现是Gridea软件不是最新版本.官网下载慢，我百度了一下，下载安装后解决了问题。</p>
-<p>注：第一篇博客，我按照学习计算机语言的惯例(输出Hello,World)将其命名。这篇博客很短小，只是当作纪念。</p>
-
-              </div>
-              <div class="post-footer">
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-      <strong>本文作者：</strong>
-      Ation&#39;s blog
-    </li>
-    <li class="post-copyright-link">
-      <strong>本文链接：</strong>
-      <a href="https://ation-xu.github.io/post/helloworldzai-github-shang-da-jian-bo-ke/" title="Hello,World!(在GitHub上搭建博客)">Hello,World!(在GitHub上搭建博客)</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong>
-      本博客所有文章除特别声明外，转载请注明出处！
-    </li>
-  </ul>
-  <div class="tags">
-    
-      <a href="https://ation-xu.github.io/tag/kueImdHZt/"># Blog</a>
-    
-  </div>
-  <div class="nav">
-    <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="安装第二个物理机(以Ubuntu 19.10为例)" href="https://ation-xu.github.io/post/an-zhuang-di-er-ge-wu-li-ji-yi-ubuntu-1910-wei-li/">安装第二个物理机(以Ubuntu 19.10为例)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="安装第二个物理机(以Ubuntu 19.10为例)" href="https://ation-xu.github.io/post/an-zhuang-di-er-ge-wu-li-ji-yi-ubuntu-1910-wei-li/">上一篇</a>
+        
+          
+        
       
-    </div>
-    <div class="nav-next">
+        
+          
+        
+      
+        
+      
+        
+          
+        
       
     </div>
   </div>
 </div>
-              
-  
-    
-      <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<div id="gitalk-container"></div>
-
-<script>
-  var gitalk = new Gitalk({
-    clientID: 'de4f5ee6299d193ba545',
-    clientSecret: 'f5279bd6ed9b5307f2ac8fb9ee26decefeb66ab1',
-    repo: 'blogtalk',
-    owner: 'ation-xu',
-    admin: ['ation-xu'],
-    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-  gitalk.render('gitalk-container')
-</script>
-    
-    
-  
-
-            </div>
+                  </section>
+                </div>
+              </div>
           </div>
         </div>
       </div>
@@ -561,36 +415,6 @@
   // 代码高亮
   hljs.initHighlightingOnLoad();
 
-</script>
-      <div class="light-box" id="light_box"></div>
-<script>
-  let imgs = document.querySelectorAll('.post-body img');
-  let lightBox = document.querySelector('#light_box');
-  lightBox.addEventListener('mousedown', (e) => {
-    e.preventDefault()
-  })
-  lightBox.addEventListener('mousewheel', (e) => {
-    e.preventDefault()
-  })
-  let width = window.innerWidth * 0.8;
-  lightBox.onclick= () => {
-    let img = lightBox.querySelector('img');
-    lightBox.style = '';
-    img && img.remove();
-  }
-  imgs.forEach(item => {
-    item.onclick = function(e) {
-      let lightImg = document.createElement('img');
-      lightImg.src = this.src;
-      lightBox.style = `height: 100%; opacity: 1; background-color: rgba(0, 0, 0, 0.5);cursor: zoom-out;`;
-      lightImg.style = `width: ${width}px; border: 1px solid #fff; border-radius: 2px;`;
-      lightImg.onclick = function() {
-        lightBox.style = '';
-        this.remove();
-      }
-      lightBox.append(lightImg);
-    }
-  })
 </script>
     </div>
   </body>
