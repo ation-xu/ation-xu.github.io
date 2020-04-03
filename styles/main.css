@@ -2110,4 +2110,6 @@ blockquote:before {
       background: #FFFFFFcc;
     }.bg-img img {
         filter: blur(5px)
-      }
+      }.box-shadow-wrapper {
+      box-shadow: none !important;
+    }
