@@ -2,13 +2,40 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ation-xu.github.io</id>
     <title>Ation&apos;s blog</title>
-    <updated>2020-04-04T01:20:56.815Z</updated>
+    <updated>2020-04-04T03:17:50.986Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ation-xu.github.io"/>
     <link rel="self" href="https://ation-xu.github.io/atom.xml"/>
     <logo>https://ation-xu.github.io/images/avatar.png</logo>
     <icon>https://ation-xu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ation&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[快速将网站全站内容调整为黑白的方法]]></title>
+        <id>https://ation-xu.github.io/post/kuai-su-jiang-wang-zhan-quan-zhan-nei-rong-diao-zheng-wei-hei-bai-de-fang-fa/</id>
+        <link href="https://ation-xu.github.io/post/kuai-su-jiang-wang-zhan-quan-zhan-nei-rong-diao-zheng-wei-hei-bai-de-fang-fa/">
+        </link>
+        <updated>2020-04-04T02:56:59.000Z</updated>
+        <content type="html"><![CDATA[<p>当对遇难同胞或牺牲烈士表示悼念时(如 新冠肺炎疫情斗争)，许多网站都会调整成黑白的色调。此处记录最简单的方法。</p>
+<h2 id="材料与配置">材料与配置</h2>
+<ul>
+<li>你的网站</li>
+</ul>
+<h2 id="操作">操作</h2>
+<h3 id="一找到-main-csscss即-主css文件">一.找到 main-css.css(即 主CSS)文件.</h3>
+<h3 id="二复制下列代码粘贴在其中不清楚粘贴位置的粘贴在最上方就可以">二.复制下列代码粘贴在其中(不清楚粘贴位置的，粘贴在最上方就可以) .</h3>
+<p><code>html {</code></p>
+<p><code>webkit-filter: grayscale(100%);</code></p>
+<p><code>-moz-filter: grayscale(100%);</code></p>
+<p><code>-ms-filter: grayscale(100%);</code></p>
+<p><code>-o-filter: grayscale(100%);</code></p>
+<p><code>filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);</code></p>
+<p><code>_filter:none;</code></p>
+<p><code>}</code></p>
+<h3 id="三保存后刷新网页发现网站已经变成黑白了">三.保存后刷新网页，发现网站已经变成黑白了.</h3>
+<h2 id="参考">参考</h2>
+<p>转自 <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2948584067&amp;site=qq&amp;menu=yes">@Acfboy</a> QQ聊天叙述</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[震惊!浙江中小学开学时间公布！(已过时)]]></title>
         <id>https://ation-xu.github.io/post/zhen-liang-zhe-jiang-zhong-xiao-xue-kai-xue-shi-jian-gong-bu/</id>
