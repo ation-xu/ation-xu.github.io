@@ -2,10 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ation-xu.github.io</id>
     <title>Ation&apos;s blog</title>
-    <updated>2020-04-04T03:25:12.470Z</updated>
+    <updated>2020-04-07T11:48:25.993Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ation-xu.github.io"/>
     <link rel="self" href="https://ation-xu.github.io/atom.xml"/>
+    <subtitle>可是月亮奔我而来的话，那还算什么月亮。我不要。我要让它永远清冷皎洁，永远都在天穹高悬。我会变得足够好，直到能触碰它。</subtitle>
     <logo>https://ation-xu.github.io/images/avatar.png</logo>
     <icon>https://ation-xu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Ation&apos;s blog</rights>
