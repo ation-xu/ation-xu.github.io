@@ -78,6 +78,36 @@
       </a>
     </div>
   </div>
+  <div class="kbBox" id="kbBox"></div>
+
+<div class="startGame" id="startGame">
+    <a href="javascript:void(0)" id="enterGame">但是你可以试试 弹跳的小球 游戏！</a>
+</div>
+
+<div class="gameId" id="gameId" style="display: none;">
+    <canvas id="canvas"></canvas>
+    <p>游戏玩法：使用左键、右键和上箭头键移动。</p>
+</div>
+
+<script src="js/game.js"></script>
+<script>
+    window.onload = function () {
+        var height = document.documentElement.clientHeight;
+        var kbBox = document.getElementById("kbBox");
+        var top = height - 400;
+        console.log(top);
+        kbBox.setAttribute("style","height:"+top/2+"px");
+
+        var startGameId = document.getElementById("startGame");
+        var enterGameId = document.getElementById("enterGame");
+        var gameId = document.getElementById("gameId");
+        enterGameId.onclick = function () {
+            gameId.setAttribute("style","display:block");
+            startGameId.setAttribute("style","display:none");
+            Loop();
+        }
+    }
+</script>
   <footer class="footer">
     Powered by <a href="https://gridea.dev" target="_blank">Gridea</a>
   </footer>
