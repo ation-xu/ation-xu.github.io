@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ation-xu.github.io</id>
     <title>Ation&apos;s blog</title>
-    <updated>2020-04-11T01:06:13.496Z</updated>
+    <updated>2020-04-25T08:28:09.874Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ation-xu.github.io"/>
     <link rel="self" href="https://ation-xu.github.io/atom.xml"/>
@@ -24,14 +24,22 @@
 <h2 id="操作">操作</h2>
 <h3 id="一找到-main-csscss即-主css文件">一.找到 main-css.css(即 主CSS)文件.</h3>
 <h3 id="二复制下列代码粘贴在其中不清楚粘贴位置的粘贴在最上方就可以">二.复制下列代码粘贴在其中(不清楚粘贴位置的，粘贴在最上方就可以) .</h3>
-<p><code>html {</code></p>
-<p><code>webkit-filter: grayscale(100%);</code></p>
-<p><code>-moz-filter: grayscale(100%);</code></p>
-<p><code>-ms-filter: grayscale(100%);</code></p>
-<p><code>-o-filter: grayscale(100%);</code></p>
-<p><code>filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);</code></p>
-<p><code>_filter:none;</code></p>
-<p><code>}</code></p>
+<pre><code class="language-css">html {
+
+        webkit-filter: grayscale(100%); 
+
+        -moz-filter: grayscale(100%);
+
+        -ms-filter: grayscale(100%);
+
+        -o-filter: grayscale(100%);
+
+        filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+
+        _filter:none;
+
+    }
+</code></pre>
 <h3 id="三保存后刷新网页发现网站已经变成黑白了">三.保存后刷新网页，发现网站已经变成黑白了.</h3>
 <h2 id="参考">参考</h2>
 <p>转自 <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2948584067&amp;site=qq&amp;menu=yes">@Acfboy</a> QQ聊天叙述</p>
