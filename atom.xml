@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ation-xu.github.io</id>
     <title>Ation&apos;s blog</title>
-    <updated>2020-06-27T08:53:40.735Z</updated>
+    <updated>2020-06-27T08:57:50.447Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ation-xu.github.io"/>
     <link rel="self" href="https://ation-xu.github.io/atom.xml"/>
@@ -16,24 +16,7 @@
         <link href="https://ation-xu.github.io/post/kuai-su-jiang-wang-zhan-quan-zhan-nei-rong-diao-zheng-wei-hei-bai-de-fang-fa/">
         </link>
         <updated>2020-04-04T02:56:59.000Z</updated>
-        <content type="html"><![CDATA[<style type="text/css">
-html {
-
-        webkit-filter: grayscale(100%); 
-
-        -moz-filter: grayscale(100%);
-
-        -ms-filter: grayscale(100%);
-
-        -o-filter: grayscale(100%);
-
-        filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
-
-        _filter:none;
-
-    }
-</style>
-<p>当对遇难同胞或牺牲烈士表示悼念时(如 新冠肺炎疫情斗争)，许多网站都会调整成黑白的色调。此处记录最简单的方法。</p>
+        <content type="html"><![CDATA[<p>当对遇难同胞或牺牲烈士表示悼念时(如 新冠肺炎疫情斗争)，许多网站都会调整成黑白的色调。此处记录最简单的方法。</p>
 <h2 id="材料与配置">材料与配置</h2>
 <ul>
 <li>你的网站</li>
