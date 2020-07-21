@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ation-xu.github.io</id>
     <title>Ation&apos;s blog</title>
-    <updated>2020-07-21T15:49:31.732Z</updated>
+    <updated>2020-07-21T23:39:46.752Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ation-xu.github.io"/>
     <link rel="self" href="https://ation-xu.github.io/atom.xml"/>
@@ -12,10 +12,10 @@
     <rights>All rights reserved 2020, Ation&apos;s blog</rights>
     <entry>
         <title type="html"><![CDATA[Bing 今日美图获取 API]]></title>
-        <id>https://ation-xu.github.io/post/bing-jin-ri-mei-tu-shi-yong-lian-jie/</id>
-        <link href="https://ation-xu.github.io/post/bing-jin-ri-mei-tu-shi-yong-lian-jie/">
+        <id>https://ation-xu.github.io/post/bing-jin-ri-mei-tu-huo-qu-api/</id>
+        <link href="https://ation-xu.github.io/post/bing-jin-ri-mei-tu-huo-qu-api/">
         </link>
-        <updated>2020-07-21T13:42:22.000Z</updated>
+        <updated>2020-07-21T23:39:27.000Z</updated>
         <content type="html"><![CDATA[<style type="text/css">
 body { background-image: url(http://api.ltttttt.com/Bing/Index); }
 </style>
