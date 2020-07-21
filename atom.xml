@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ation-xu.github.io</id>
     <title>Ation&apos;s blog</title>
-    <updated>2020-07-21T14:22:25.815Z</updated>
+    <updated>2020-07-21T14:31:30.878Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ation-xu.github.io"/>
     <link rel="self" href="https://ation-xu.github.io/atom.xml"/>
@@ -27,14 +27,14 @@ body { background-image: url(http://api.ltttttt.com/Bing/Index); }
 <li>你的网站</li>
 </ul>
 <h1 id="操作">操作</h1>
-<h2 id="打开要修改的-html-文件">打开要修改的 HTML 文件.</h2>
-<h2 id="复制下面一段代码放入-headhead-标记中">复制下面一段代码放入 <head></head> 标记中.</h2>
+<h2 id="一打开要修改的-html-文件">一.打开要修改的 HTML 文件.</h2>
+<h2 id="二复制下面一段代码放入-headhead-标记中">二.复制下面一段代码放入 <head></head> 标记中.</h2>
 <pre><code class="language-html">&lt;style type=&quot;text/css&quot;&gt;
 body { background-image: url(http://api.ltttttt.com/Bing/Index); }
 &lt;/style&gt;
 </code></pre>
 <p>当然也可以复制 <style></style> 标记 中的 CSS 代码放入CSS 文件中.</p>
-<h2 id="保存后刷新网页发现网页或网站已经变成-bing-今日美图了">保存后刷新网页，发现网页（或网站）已经变成 Bing 今日美图了.</h2>
+<h2 id="三保存后刷新网页发现网页或网站已经变成-bing-今日美图了">三.保存后刷新网页，发现网页（或网站）已经变成 Bing 今日美图了.</h2>
 <h1 id="参考">参考</h1>
 <p>转自<a href="https://www.lttttt.com/bing-api/">李特特特特特特</a></p>
 ]]></content>
