@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ation-xu.github.io</id>
     <title>Ation&apos;s blog</title>
-    <updated>2020-07-21T14:03:30.040Z</updated>
+    <updated>2020-07-21T14:05:07.639Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ation-xu.github.io"/>
     <link rel="self" href="https://ation-xu.github.io/atom.xml"/>
@@ -31,7 +31,7 @@ body { background-image: url(http://api.ltttttt.com/Bing/Index); }
 &lt;/style&gt;
 </code></pre>
 <p>当然也可以复制 <style></style> 标记 中的 CSS 代码放入CSS 文件中.</p>
-<h2 id="保存后刷新网页发现网页或网站已经变成以bing今日美图了">保存后刷新网页，发现网页（或网站）已经变成以Bing今日美图了.</h2>
+<h2 id="保存后刷新网页发现网页或网站已经变成-bing-今日美图了">保存后刷新网页，发现网页（或网站）已经变成 Bing 今日美图了.</h2>
 <h1 id="参考">参考</h1>
 <p>转自<a href="https://www.lttttt.com/bing-api/">李特特特特特特</a></p>
 ]]></content>
