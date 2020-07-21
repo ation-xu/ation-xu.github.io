@@ -7,7 +7,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="我们都是阴沟里的虫子，但总得有人仰望星空。">
 <meta name="theme-color" content="#000">
-<title>倒计时 | Ation&#39;s blog</title>
+<title>Bing 今日美图获取 API | Ation&#39;s blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1595340081961">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/mist.css">
@@ -27,8 +27,8 @@
 
 
 
-    <meta name="description" content="倒计时" />
-    <meta name="keywords" content="JavaScript" />
+    <meta name="description" content="Bing 今日美图获取 API" />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -178,7 +178,8 @@
       <div class="sidebar-body mist" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper ">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -234,6 +235,194 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E6%9D%90%E6%96%99%E4%B8%8E%E9%85%8D%E7%BD%AE">材料与配置</a></li>
+<li><a href="#%E6%93%8D%E4%BD%9C">操作</a>
+<ul>
+<li><a href="#%E6%89%93%E5%BC%80%E8%A6%81%E4%BF%AE%E6%94%B9%E7%9A%84-html-%E6%96%87%E4%BB%B6">打开要修改的 HTML 文件.</a></li>
+<li><a href="#%E5%A4%8D%E5%88%B6%E4%B8%8B%E9%9D%A2%E4%B8%80%E6%AE%B5%E4%BB%A3%E7%A0%81%E6%94%BE%E5%85%A5-headhead-%E6%A0%87%E8%AE%B0%E4%B8%AD">复制下面一段代码放入 <head></head> 标记中.</a></li>
+<li><a href="#%E4%BF%9D%E5%AD%98%E5%90%8E%E5%88%B7%E6%96%B0%E7%BD%91%E9%A1%B5%E5%8F%91%E7%8E%B0%E7%BD%91%E9%A1%B5%E6%88%96%E7%BD%91%E7%AB%99%E5%B7%B2%E7%BB%8F%E5%8F%98%E6%88%90%E4%BB%A5bing%E4%BB%8A%E6%97%A5%E7%BE%8E%E5%9B%BE%E4%BA%86">保存后刷新网页，发现网页（或网站）已经变成以Bing今日美图了.</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+      lList.push(elem);
+    }
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+
+(function() {
+  // 处理不是从#一级标题开始目录
+  if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+    let con = tocContent.children[0].children[0];
+    tocContent.innerHTML = con.innerHTML;
+  }
+  addTocNumber(tocContent, '');
+})();
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -321,8 +510,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://ation-xu.github.io/post/dao-ji-shi/">
-      倒计时
+    <a class="post-title-link" href="https://ation-xu.github.io/post/bing-jin-ri-mei-tu-shi-yong-lian-jie/">
+      Bing 今日美图获取 API
     </a>
   </h1>
   <div class="post-meta">
@@ -330,22 +519,9 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-04-03</span>
+      <span>2020-07-21</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
-    
-      <span class="meta-item">
-        <i class="fa fa-folder-o"></i>
-        <span class="pc-show">分类于</span>
-        
-          
-            <a href="https://ation-xu.github.io/tag/Yfe6Waqo-/">
-              <span>JavaScript</span>
-            </a>
-          
-        
-      </span>
-      <span class="post-meta-divider">|</span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
@@ -354,39 +530,30 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>6<span class="pc-show">字数</span></span>
+      <span>176<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <p><SPAN id=span_dt_dt></SPAN><br>
-<SPAN id=span_dt_dt2></SPAN><br>
-<SPAN id=span_dt_dt3></SPAN></p>
-<SCRIPT language=javascript>
-<!--
-//document.write("");
-function show_date_time(){
-window.setTimeout("show_date_time()", 1000);
-BirthDay=new Date("9/1/2020 00:00:00");//这个日期是可以修改的
-today=new Date();
-timeold=(BirthDay.getTime()-today.getTime());
-sectimeold=timeold/1000
-secondsold=Math.floor(sectimeold);
-msPerDay=24*60*60*1000
-e_daysold=timeold/msPerDay
-daysold=Math.floor(e_daysold);
-e_hrsold=(e_daysold-daysold)*24;
-hrsold=Math.floor(e_hrsold);
-e_minsold=(e_hrsold-hrsold)*60;
-minsold=Math.floor((e_hrsold-hrsold)*60);
-seconds=Math.floor((e_minsold-minsold)*60);
-span_dt_dt.innerHTML="距离暑假结束还有<align=center><p><font color=#A22900><p><font  size=8>"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒"+"<br></font><br></font>" ; // 这里你自己改。就是倒计时的样式，字体大小size=4 颜色是color
-}
-show_date_time();
-//-->
-</SCRIPT>
-Powered By [Acfboy](https://acfboy.pw)
+                <p>微软的Bing搜索每天都会为访问者提供一张精美的图片。今天的图片便是：<br>
+<img src="http://api.ltttttt.com/Bing/Index"/><br>
+这些图片非常适合当作壁纸。那么如何把这张图片作为自己博客的壁纸并实时更新呢?</p>
+<h1 id="材料与配置">材料与配置</h1>
+<ul>
+<li>你的网站</li>
+</ul>
+<h1 id="操作">操作</h1>
+<h2 id="打开要修改的-html-文件">打开要修改的 HTML 文件.</h2>
+<h2 id="复制下面一段代码放入-headhead-标记中">复制下面一段代码放入 <head></head> 标记中.</h2>
+<pre><code class="language-html">&lt;style type=&quot;text/css&quot;&gt;
+body { background-image: url(http://api.ltttttt.com/Bing/Index); }
+&lt;/style&gt;
+</code></pre>
+<p>当然也可以复制 <style></style> 标记 中的 CSS 代码放入CSS 文件中.</p>
+<h2 id="保存后刷新网页发现网页或网站已经变成以bing今日美图了">保存后刷新网页，发现网页（或网站）已经变成以Bing今日美图了.</h2>
+<h1 id="参考">参考</h1>
+<p>转自<a href="https://www.lttttt.com/bing-api/">李特特特特特特</a></p>
 
               </div>
               <div class="post-footer">
@@ -397,7 +564,7 @@ Powered By [Acfboy](https://acfboy.pw)
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://ation-xu.github.io/post/dao-ji-shi/" title="倒计时">倒计时</a>
+      <a href="https://ation-xu.github.io/post/bing-jin-ri-mei-tu-shi-yong-lian-jie/" title="Bing 今日美图获取 API">Bing 今日美图获取 API</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -406,14 +573,16 @@ Powered By [Acfboy](https://acfboy.pw)
   </ul>
   <div class="tags">
     
-      <a href="https://ation-xu.github.io/tag/Yfe6Waqo-/"># JavaScript</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
     </div>
     <div class="nav-next">
+      
+        <a class="nav-pc-next" title="快速将网站全站内容调整为黑白的方法" href="https://ation-xu.github.io/post/kuai-su-jiang-wang-zhan-quan-zhan-nei-rong-diao-zheng-wei-hei-bai-de-fang-fa/">快速将网站全站内容调整为黑白的方法</a>
+        <a class="nav-mobile-next" title="快速将网站全站内容调整为黑白的方法" href="https://ation-xu.github.io/post/kuai-su-jiang-wang-zhan-quan-zhan-nei-rong-diao-zheng-wei-hei-bai-de-fang-fa/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
