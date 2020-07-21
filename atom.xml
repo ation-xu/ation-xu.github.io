@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ation-xu.github.io</id>
     <title>Ation&apos;s blog</title>
-    <updated>2020-07-21T14:20:37.320Z</updated>
+    <updated>2020-07-21T14:22:25.815Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ation-xu.github.io"/>
     <link rel="self" href="https://ation-xu.github.io/atom.xml"/>
@@ -16,7 +16,10 @@
         <link href="https://ation-xu.github.io/post/bing-jin-ri-mei-tu-shi-yong-lian-jie/">
         </link>
         <updated>2020-07-21T13:42:22.000Z</updated>
-        <content type="html"><![CDATA[<p>微软的Bing搜索每天都会为访问者提供一张精美的图片。今天的图片便是：<br>
+        <content type="html"><![CDATA[<style type="text/css">
+body { background-image: url(http://api.ltttttt.com/Bing/Index); }
+</style>
+<p>微软的Bing搜索每天都会为访问者提供一张精美的图片。今天的图片便是：<br>
 <img src="http://api.ltttttt.com/Bing/Index"/><br>
 这些图片非常适合当作壁纸。那么如何把这张图片作为自己博客的壁纸并实时更新呢?</p>
 <h1 id="材料与配置">材料与配置</h1>
