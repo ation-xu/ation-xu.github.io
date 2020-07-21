@@ -8,7 +8,7 @@
 <meta name="description" content="我们都是阴沟里的虫子，但总得有人仰望星空。">
 <meta name="theme-color" content="#000">
 <title>倒计时 | Ation&#39;s blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1595374883044">
+<link rel="shortcut icon" href="/favicon.ico?v=1595375283832">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/mist.css">
 
@@ -354,7 +354,7 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>6<span class="pc-show">字数</span></span>
+      <span>7<span class="pc-show">字数</span></span>
     </span>
     
   </div>
@@ -386,7 +386,36 @@ span_dt_dt.innerHTML="距离暑假结束还有<align=center><p><font color=#A229
 show_date_time();
 //-->
 </SCRIPT>
-Powered By [Acfboy](https://acfboy.pw)
+附源码：
+```html
+<p><SPAN id=span_dt_dt></SPAN><br>
+<SPAN id=span_dt_dt2></SPAN><br>
+<SPAN id=span_dt_dt3></SPAN></p>
+<SCRIPT language=javascript>
+<!--
+//document.write("");
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("9/1/2020 00:00:00");//这个日期是可以修改的
+today=new Date();
+timeold=(BirthDay.getTime()-today.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=Math.floor(e_hrsold);
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=Math.floor((e_hrsold-hrsold)*60);
+seconds=Math.floor((e_minsold-minsold)*60);
+span_dt_dt.innerHTML="距离暑假结束还有<align=center><p><font color=#A22900><p><font  size=8>"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒"+"<br></font><br></font>" ; // 这里你自己改。就是倒计时的样式，字体大小size=4 颜色是color
+}
+show_date_time();
+//-->
+</SCRIPT>
+```
+<p>Powered By <a href="https://acfboy.pw">Acfboy</a></p>
 
               </div>
               <div class="post-footer">
