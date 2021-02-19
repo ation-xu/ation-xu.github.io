@@ -2,14 +2,47 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ation-xu.github.io</id>
     <title>Ation&apos;s blog</title>
-    <updated>2020-08-31T04:32:03.551Z</updated>
+    <updated>2021-02-19T04:46:18.852Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ation-xu.github.io"/>
     <link rel="self" href="https://ation-xu.github.io/atom.xml"/>
     <subtitle>我们都是阴沟里的虫子，但总得有人仰望星空。</subtitle>
     <logo>https://ation-xu.github.io/images/avatar.png</logo>
     <icon>https://ation-xu.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Ation&apos;s blog</rights>
+    <rights>All rights reserved 2021, Ation&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Misaka Mitoko！]]></title>
+        <id>https://ation-xu.github.io/post/misaka-mitoko/</id>
+        <link href="https://ation-xu.github.io/post/misaka-mitoko/">
+        </link>
+        <updated>2021-02-19T04:43:52.000Z</updated>
+        <content type="html"><![CDATA[<p><SPAN id=span_dt_dt></SPAN><br>
+<SPAN id=span_dt_dt2></SPAN><br>
+<SPAN id=span_dt_dt3></SPAN></p>
+<SCRIPT language=javascript>
+<!--
+//document.write("");
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("5/2/2021 15:30:00");//这个日期是可以修改的
+today=new Date();
+timeold=(BirthDay.getTime()-today.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=Math.floor(e_hrsold);
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=Math.floor((e_hrsold-hrsold)*60);
+seconds=Math.floor((e_minsold-minsold)*60);
+span_dt_dt.innerHTML="距离御坂生日还有<align=center><p><font color=#A22900><p><font  size=8>"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒"+"<br></font><br></font>" ; // 这里你自己改。就是倒计时的样式，字体大小size=4 颜色是color
+}
+show_date_time();
+//-->
+</SCRIPT>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Bing 今日美图获取 API]]></title>
         <id>https://ation-xu.github.io/post/bing-jin-ri-mei-tu-huo-qu-api/</id>
